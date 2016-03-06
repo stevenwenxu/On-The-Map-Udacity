@@ -32,6 +32,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		self.appDelegate.sessionId = nil
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
+	@IBAction func reloadPressed(sender: UIBarButtonItem) {
+		self.mapView.removeAnnotations(self.annotations)
+		self.annotations = []
+		self.getStudents()
+	}
 
 	// MARK: - 
 	func getStudents() {

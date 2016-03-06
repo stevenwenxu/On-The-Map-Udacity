@@ -25,6 +25,9 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 		self.appDelegate.sessionId = nil
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
+	@IBAction func reloadPressed(sender: UIBarButtonItem) {
+		self.tableView.reloadData()
+	}
 
 	// MARK: TableViewDelegate
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

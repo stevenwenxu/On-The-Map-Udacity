@@ -171,7 +171,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="aGm-1N-th7"/>
+                            <barButtonItem systemItem="refresh" id="aGm-1N-th7">
+                                <connections>
+                                    <action selector="reloadPressed:" destination="CQl-Lw-0M1" id="aVi-Wi-C35"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="Pin" id="2CI-H7-Sl7">
                                 <connections>
                                     <segue destination="6lg-2Y-fXy" kind="modal" id="uM5-dV-1Lb"/>
@@ -239,7 +243,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="9E7-NN-bbg"/>
+                            <barButtonItem systemItem="refresh" id="9E7-NN-bbg">
+                                <connections>
+                                    <action selector="reloadPressed:" destination="ppM-En-kAq" id="nCd-iK-vzd"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="Pin" id="BB5-oP-3Hj">
                                 <connections>
                                     <segue destination="6lg-2Y-fXy" kind="modal" id="idT-qa-ud5"/>
