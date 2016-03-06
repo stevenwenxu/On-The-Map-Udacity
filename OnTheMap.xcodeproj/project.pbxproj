@@ -15,6 +15,7 @@
 		B0C184891C8CA5910039643A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C184881C8CA5910039643A /* MapViewController.swift */; };
 		B0C1848B1C8CA7010039643A /* MapTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1848A1C8CA7010039643A /* MapTableViewController.swift */; };
 		B0C1848D1C8CC88B0039643A /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1848C1C8CC88B0039643A /* StudentLocation.swift */; };
+		B0C1848F1C8CDB290039643A /* StudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1848E1C8CDB290039643A /* StudentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B0C184881C8CA5910039643A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B0C1848A1C8CA7010039643A /* MapTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewController.swift; sourceTree = "<group>"; };
 		B0C1848C1C8CC88B0039643A /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		B0C1848E1C8CDB290039643A /* StudentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				B0C184881C8CA5910039643A /* MapViewController.swift */,
 				B0C1848C1C8CC88B0039643A /* StudentLocation.swift */,
 				B0C1848A1C8CA7010039643A /* MapTableViewController.swift */,
+				B0C1848E1C8CDB290039643A /* StudentTableViewCell.swift */,
 				B0C184801C8C8EF70039643A /* Support Files */,
 			);
 			path = OnTheMap;
@@ -157,6 +160,7 @@
 				B0C184891C8CA5910039643A /* MapViewController.swift in Sources */,
 				B0C1848D1C8CC88B0039643A /* StudentLocation.swift in Sources */,
 				B0C1846F1C8C8ED70039643A /* AppDelegate.swift in Sources */,
+				B0C1848F1C8CDB290039643A /* StudentTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

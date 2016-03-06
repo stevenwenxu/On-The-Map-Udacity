@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			NSUserDefaults.standardUserDefaults().setValue(sessionId, forKey: "udacitySessionId")
 		}
 	}
+	var students: [StudentLocation] = []
 
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

@@ -19,7 +19,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
 	@IBOutlet weak var mapView: MKMapView!
 	var annotations: [MKPointAnnotation] = []
-	var students: [StudentLocation] = []
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -53,7 +52,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 			if let results = json["results"] as? NSArray {
 				results.forEach {
 					let result = $0 as! NSDictionary
-					self.students.append(StudentLocation(
+					self.appDelegate.students.append(StudentLocation(
 						objectId: result["objectId"] as! String,
 						uniqueKey: result["uniqueKey"] as! String,
 						firstName: result["firstName"] as! String,
@@ -73,7 +72,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 	}
 
 	func drawAnnotations() {
-		for student in self.students {
+		for student in self.appDelegate.students {
 			let annotation = MKPointAnnotation()
 			annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude, longitude: student.longitude)
 			annotation.title = "\(student.firstName) \(student.lastName)"
