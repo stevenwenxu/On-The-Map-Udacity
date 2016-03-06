@@ -14,6 +14,7 @@
 		B0C184791C8C8ED70039643A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C184771C8C8ED70039643A /* LaunchScreen.storyboard */; };
 		B0C184891C8CA5910039643A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C184881C8CA5910039643A /* MapViewController.swift */; };
 		B0C1848B1C8CA7010039643A /* MapTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1848A1C8CA7010039643A /* MapTableViewController.swift */; };
+		B0C1848D1C8CC88B0039643A /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1848C1C8CC88B0039643A /* StudentLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B0C1847A1C8C8ED70039643A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0C184881C8CA5910039643A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B0C1848A1C8CA7010039643A /* MapTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewController.swift; sourceTree = "<group>"; };
+		B0C1848C1C8CC88B0039643A /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				B0C184701C8C8ED70039643A /* LoginViewController.swift */,
 				B0C184721C8C8ED70039643A /* Main.storyboard */,
 				B0C184881C8CA5910039643A /* MapViewController.swift */,
+				B0C1848C1C8CC88B0039643A /* StudentLocation.swift */,
 				B0C1848A1C8CA7010039643A /* MapTableViewController.swift */,
 				B0C184801C8C8EF70039643A /* Support Files */,
 			);
@@ -152,6 +155,7 @@
 				B0C1848B1C8CA7010039643A /* MapTableViewController.swift in Sources */,
 				B0C184711C8C8ED70039643A /* LoginViewController.swift in Sources */,
 				B0C184891C8CA5910039643A /* MapViewController.swift in Sources */,
+				B0C1848D1C8CC88B0039643A /* StudentLocation.swift in Sources */,
 				B0C1846F1C8C8ED70039643A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

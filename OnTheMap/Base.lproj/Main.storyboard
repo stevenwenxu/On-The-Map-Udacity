@@ -190,7 +190,18 @@
                     <view key="view" contentMode="scaleToFill" id="SRs-VN-3a0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xX6-a3-UQR">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xX6-a3-UQR" secondAttribute="trailing" id="JES-X3-6aO"/>
+                            <constraint firstItem="xX6-a3-UQR" firstAttribute="bottom" secondItem="Q6U-xR-OEF" secondAttribute="top" id="inF-gf-wHk"/>
+                            <constraint firstItem="xX6-a3-UQR" firstAttribute="top" secondItem="aZj-Mh-hFk" secondAttribute="bottom" id="mma-Nt-oiL"/>
+                            <constraint firstItem="xX6-a3-UQR" firstAttribute="leading" secondItem="SRs-VN-3a0" secondAttribute="leading" id="zFO-Fm-5fI"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="LKc-fb-wDN">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="x9H-3d-KmA">
@@ -207,6 +218,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="xX6-a3-UQR" id="JFd-k7-z5F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zKM-Vr-FU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -301,6 +315,6 @@
         <image name="Pin" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uM5-dV-1Lb"/>
+        <segue reference="idT-qa-ud5"/>
     </inferredMetricsTieBreakers>
 </document>
