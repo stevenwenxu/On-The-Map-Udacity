@@ -10,7 +10,10 @@ import UIKit
 
 class MapTableViewController: UIViewController {
 
+	var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
 	@IBAction func logOutPressed(sender: UIBarButtonItem) {
+		self.appDelegate.sessionId = nil
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 }

@@ -13,6 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
+	var sessionId: String? = nil {
+		didSet {
+			NSUserDefaults.standardUserDefaults().setValue(sessionId, forKey: "udacitySessionId")
+		}
+	}
+
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.

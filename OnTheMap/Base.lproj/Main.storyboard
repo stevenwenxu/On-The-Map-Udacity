@@ -41,7 +41,7 @@
                                 <rect key="frame" x="16" y="274" width="288" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="946-YP-pUE">
                                 <rect key="frame" x="16" y="322" width="288" height="40"/>
@@ -51,7 +51,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Bbd-87-bCS" kind="modal" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="f6f-9J-BPr"/>
+                                    <action selector="loginDidTap" destination="BYZ-38-t0r" eventType="touchUpInside" id="G5Q-hq-tua"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoJ-95-BEq">
@@ -60,6 +60,9 @@
                                 <state key="normal" title="Don't have an account? Sign up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUpDidPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="FWd-Rh-1Ob"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -89,6 +92,11 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="snE-l1-upj" id="01L-mW-pwW"/>
+                        <outlet property="passwordTextField" destination="WUF-5i-LtN" id="tmt-21-pfO"/>
+                        <segue destination="Bbd-87-bCS" kind="modal" identifier="loggedIn" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="kQc-sL-T3T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +114,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="24" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QxG-Vc-xjJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="24" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QxG-Vc-xjJ">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -123,6 +131,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QxG-Vc-xjJ" firstAttribute="leading" secondItem="GBE-i2-zv5" secondAttribute="leading" id="Emx-9Q-Pgc"/>
+                            <constraint firstItem="QxG-Vc-xjJ" firstAttribute="top" secondItem="pHT-Rx-B0U" secondAttribute="bottom" id="Xqo-o9-OGi"/>
+                            <constraint firstAttribute="trailing" secondItem="QxG-Vc-xjJ" secondAttribute="trailing" id="m7k-VA-cpb"/>
+                            <constraint firstItem="QxG-Vc-xjJ" firstAttribute="bottom" secondItem="xjt-9n-rTi" secondAttribute="top" id="u4B-Qj-cTT"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="6a7-01-k5H">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="ikJ-OC-G9Z">
@@ -287,6 +301,6 @@
         <image name="Pin" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="idT-qa-ud5"/>
+        <segue reference="uM5-dV-1Lb"/>
     </inferredMetricsTieBreakers>
 </document>
