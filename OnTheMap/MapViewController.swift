@@ -12,10 +12,6 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
 
 	var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-	let appID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
-	let APIKEY = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
-
-	let locationURL = NSURL(string: "https://api.parse.com/1/classes/StudentLocation?limit=100")!
 
 	@IBOutlet weak var mapView: MKMapView!
 	var annotations: [MKPointAnnotation] = []
@@ -40,9 +36,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
 	// MARK: - 
 	func getStudents() {
-		let request = NSMutableURLRequest(URL: self.locationURL)
-		request.addValue(self.appID, forHTTPHeaderField: "X-Parse-Application-Id")
-		request.addValue(self.APIKEY, forHTTPHeaderField: "X-Parse-REST-API-Key")
+		let request = NSMutableURLRequest(URL: NSURL(string: APIConstants.apiURL + "?limit=100")!)
+		request.addValue(APIConstants.appID, forHTTPHeaderField: "X-Parse-Application-Id")
+		request.addValue(APIConstants.APIKEY, forHTTPHeaderField: "X-Parse-REST-API-Key")
 		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
 			if let error = error {
 				print(error.localizedDescription)
@@ -58,7 +54,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 				results.forEach {
 					let result = $0 as! NSDictionary
 					self.appDelegate.students.append(StudentLocation(
-						objectId: result["objectId"] as! String,
+						objectId: result["objectId"] as? String,
 						uniqueKey: result["uniqueKey"] as! String,
 						firstName: result["firstName"] as! String,
 						lastName: result["lastName"] as! String,

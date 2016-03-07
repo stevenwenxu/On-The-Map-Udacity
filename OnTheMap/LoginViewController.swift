@@ -84,10 +84,42 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 			if let session = json["session"] as? NSDictionary {
 				if let id = session["id"] as? String {
 					self.appDelegate.sessionId = id
+					self.storeUserInfo()
 					dispatch_async(dispatch_get_main_queue()) {
 						self.performSegueWithIdentifier("loggedIn", sender: nil)
 					}
 				}
+			}
+		}
+		task.resume()
+	}
+
+	func storeUserInfo() {
+		let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/me")!)
+		request.HTTPMethod = "GET"
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+			if let error = error {
+				print(error)
+			}
+			let data = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
+			var obj: AnyObject
+			do {
+				obj = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+			} catch {
+				print("Something happened")
+				return
+			}
+			if let userDict = obj["user"] as? NSDictionary {
+				self.appDelegate.objectId = ""
+				self.appDelegate.uniqueKey = userDict["key"] as? String
+				self.appDelegate.firstName = userDict["first_name"] as? String
+				self.appDelegate.lastName = userDict["last_name"] as? String
+				self.appDelegate.mapString =  ""
+				self.appDelegate.mediaUrl = ""
+				self.appDelegate.latitude = 0.0
+				self.appDelegate.longitude = 0.0
 			}
 		}
 		task.resume()
