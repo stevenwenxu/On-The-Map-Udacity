@@ -81,10 +81,7 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 	}
 
 	@IBAction func buttonTapped() {
-		if self.step == 1 {
-			self.mediaURL = self.textField.text
-			self.submitLocation()
-		} else if self.step == 0 {
+		if self.step == 0 {
 			let geocoder = CLGeocoder()
 			self.mapString = self.textField.text
 			geocoder.geocodeAddressString(self.mapString!) { placemarks, error in
@@ -99,6 +96,9 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 					self.step = 1
 				}
 			}
+		} else if self.step == 1 {
+			self.mediaURL = self.textField.text
+			self.submitLocation()
 		}
 	}
 
@@ -106,8 +106,17 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 		self.appDelegate.mediaUrl = self.mediaURL
 		self.appDelegate.mapString = self.mapString
 
-		let request = NSMutableURLRequest(URL: NSURL(string: APIConstants.apiURL)!)
-		request.HTTPMethod = "POST"
+		var url = ""
+		var method = ""
+		if let objectId = self.appDelegate.objectId where objectId != "" {
+			url = APIConstants.apiURL + "/\(objectId)"
+			method = "PUT"
+		} else {
+			url = APIConstants.apiURL
+			method = "POST"
+		}
+		let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+		request.HTTPMethod = method
 		request.addValue(APIConstants.appID, forHTTPHeaderField: "X-Parse-Application-Id")
 		request.addValue(APIConstants.APIKEY, forHTTPHeaderField: "X-Parse-REST-API-Key")
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")

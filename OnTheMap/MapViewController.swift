@@ -33,8 +33,23 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		self.annotations = []
 		self.getStudents()
 	}
+	@IBAction func uploadPressed(sender: UIBarButtonItem) {
 
-	// MARK: - 
+		if let objectId = self.appDelegate.objectId where objectId != "" {
+			let alert = UIAlertController(title: nil, message: "You have already posted a location. Would you like to overwrite your current location?", preferredStyle: .Alert)
+			let yesAction = UIAlertAction(title: "Overwrite", style: .Default) { _ in
+				self.performSegueWithIdentifier("postLocation", sender: nil)
+			}
+			let noAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { _ in return })
+			alert.addAction(yesAction)
+			alert.addAction(noAction)
+			self.presentViewController(alert, animated: true, completion: nil)
+		} else {
+			self.performSegueWithIdentifier("postLocation", sender: nil)
+		}
+	}
+
+	// MARK: -
 	func getStudents() {
 		let request = NSMutableURLRequest(URL: NSURL(string: APIConstants.apiURL + "?limit=100")!)
 		request.addValue(APIConstants.appID, forHTTPHeaderField: "X-Parse-Application-Id")

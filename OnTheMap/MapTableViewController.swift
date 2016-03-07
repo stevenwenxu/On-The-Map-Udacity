@@ -35,6 +35,22 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 		self.tableView.reloadData()
 	}
 
+	@IBAction func uploadPressed(sender: UIBarButtonItem) {
+		if let objectId = self.appDelegate.objectId where objectId != "" {
+			let alert = UIAlertController(title: nil, message: "You have already posted a location. Would you like to overwrite your current location?", preferredStyle: .Alert)
+			let yesAction = UIAlertAction(title: "Overwrite", style: .Default) { _ in
+				self.performSegueWithIdentifier("postLocation", sender: nil)
+			}
+			let noAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { _ in return })
+			alert.addAction(yesAction)
+			alert.addAction(noAction)
+			self.presentViewController(alert, animated: true, completion: nil)
+		} else {
+			self.performSegueWithIdentifier("postLocation", sender: nil)
+		}
+
+	}
+
 	// MARK: TableViewDelegate
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if self.searchController.active && self.searchController.searchBar.text != "" {
