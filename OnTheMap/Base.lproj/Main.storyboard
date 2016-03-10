@@ -114,32 +114,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QxG-Vc-xjJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QxG-Vc-xjJ">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studentCell" rowHeight="79" id="SZd-8U-eUL" customClass="StudentTableViewCell" customModule="OnTheMap" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="79"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studentCell" rowHeight="67" id="SZd-8U-eUL" customClass="StudentTableViewCell" customModule="OnTheMap" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="SZd-8U-eUL" id="CeX-HQ-tEX">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" verticalHuggingPriority="251" image="Pin" translatesAutoresizingMaskIntoConstraints="NO" id="CPO-47-6rG">
-                                                    <rect key="frame" x="8" y="23" width="32" height="32"/>
+                                                    <rect key="frame" x="8" y="17" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="mZc-af-oma"/>
                                                         <constraint firstAttribute="height" constant="32" id="wrw-LG-GyX"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HP5-b8-Jpk">
-                                                    <rect key="frame" x="48" y="20" width="264" height="21"/>
+                                                    <rect key="frame" x="48" y="8" width="264" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1p-FF-2kp">
-                                                    <rect key="frame" x="48" y="49" width="264" height="21"/>
+                                                    <rect key="frame" x="48" y="37" width="264" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -152,7 +152,7 @@
                                                 <constraint firstItem="CPO-47-6rG" firstAttribute="leading" secondItem="CeX-HQ-tEX" secondAttribute="leadingMargin" id="Lhy-a4-Gmo"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="T1p-FF-2kp" secondAttribute="trailing" id="Xkn-XP-WYw"/>
                                                 <constraint firstItem="CPO-47-6rG" firstAttribute="centerY" secondItem="CeX-HQ-tEX" secondAttribute="centerY" id="YJ4-Nw-5kA"/>
-                                                <constraint firstItem="HP5-b8-Jpk" firstAttribute="top" secondItem="CeX-HQ-tEX" secondAttribute="top" constant="20" symbolic="YES" id="duV-ze-dR5"/>
+                                                <constraint firstItem="HP5-b8-Jpk" firstAttribute="top" secondItem="CeX-HQ-tEX" secondAttribute="top" constant="8" id="duV-ze-dR5"/>
                                                 <constraint firstItem="HP5-b8-Jpk" firstAttribute="leading" secondItem="CPO-47-6rG" secondAttribute="trailing" constant="8" symbolic="YES" id="l6j-3m-5en"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="T1p-FF-2kp" secondAttribute="bottom" id="pGR-HP-8CC"/>
                                             </constraints>
