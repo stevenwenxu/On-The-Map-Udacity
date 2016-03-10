@@ -57,8 +57,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
 			if let error = error {
 				dispatch_async(dispatch_get_main_queue()) {
-					let alert = UIAlertView(title: "Error", message: "Log in failed\n\(error.localizedDescription)", delegate: nil, cancelButtonTitle: "OK")
-					alert.show()
+					let alert = UIAlertController(title: "Error", message: "Log in failed\n\(error.localizedDescription)", preferredStyle: .Alert)
+					let action = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+					alert.addAction(action)
+					self.presentViewController(alert, animated: true, completion: nil)
 				}
 				return
 			}
@@ -67,17 +69,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 			do {
 				json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
 			} catch {
-				dispatch_async(dispatch_get_main_queue()) {
-					let alert = UIAlertView(title: "Error", message: "Something happened", delegate: nil, cancelButtonTitle: "OK")
-					alert.show()
-				}
+				print("Something happened")
 				return
 			}
 			if let statusCode = json["status"] as? Int {
 				if statusCode != 200 {
+					print("Something happened: \(json as? NSDictionary)")
 					dispatch_async(dispatch_get_main_queue()) {
-						let alert = UIAlertView(title: "Error", message: "Login Failed", delegate: nil, cancelButtonTitle: "OK")
-						alert.show()
+						let alert = UIAlertController(title: "Error logging in", message: json["error"] as? String, preferredStyle: .Alert)
+						alert.addAction(UIAlertAction(title: "Okay", style: .Default, handler: nil))
+						self.presentViewController(alert, animated: true, completion: nil)
 					}
 				}
 			}

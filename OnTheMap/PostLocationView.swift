@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 
 class PostLocationView: UIViewController, UITextFieldDelegate {
+	@IBOutlet weak var navBar: UINavigationBar!
+	@IBOutlet weak var navBarHeight: NSLayoutConstraint!
 
 	@IBOutlet weak var whereLabel: UILabel!
 	@IBOutlet var whereLabelHeight: NSLayoutConstraint!
@@ -67,11 +69,15 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 	}
 
 	func setupSecondScreen() {
+		self.step = 1
 		self.view.layoutIfNeeded()
 		UIView.animateWithDuration(0.5) {
 			self.whereLabelHeight.constant = 0
 			self.locationViewHeight.priority = 999
-			self.locationMapViewHeight.constant = self.screenSize.height - self.locationViewHeight.constant
+			self.locationMapViewHeight.constant = self.screenSize.height - self.locationViewHeight.constant - self.navBarHeight.constant
+
+			self.navBar.barTintColor = self.locationView.backgroundColor
+			self.navBar.topItem?.rightBarButtonItems?.forEach { $0.tintColor = UIColor.whiteColor() }
 
 			self.textLabel.text = "Enter a Link to Share Here"
 			self.button.setTitle("Submit", forState: .Normal)
@@ -93,7 +99,6 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 					self.appDelegate.longitude = placemark.location?.coordinate.longitude
 					self.setupSecondScreen()
 					self.locationMapView.showAnnotations([MKPlacemark(placemark: placemark)], animated: true)
-					self.step = 1
 				}
 			}
 		} else if self.step == 1 {

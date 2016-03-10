@@ -13,18 +13,20 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 	var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
 	@IBOutlet weak var tableView: UITableView!
-	let searchController = UISearchController(searchResultsController: nil)
+	var searchController: UISearchController?
 	var filteredStudents: [StudentLocation] = []
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tableView.delegate = self
 		self.tableView.dataSource = self
+		self.tableView.estimatedRowHeight = 79
 		self.tableView.rowHeight = UITableViewAutomaticDimension
-		self.searchController.searchResultsUpdater = self
-		self.searchController.dimsBackgroundDuringPresentation = true
-		self.searchController.definesPresentationContext = true
-		self.tableView.tableHeaderView = self.searchController.searchBar
+		self.searchController = UISearchController(searchResultsController: nil)
+		self.searchController!.searchResultsUpdater = self
+		self.searchController!.dimsBackgroundDuringPresentation = true
+		self.searchController!.definesPresentationContext = true
+		self.tableView.tableHeaderView = self.searchController!.searchBar
 	}
 
 	@IBAction func logOutPressed(sender: UIBarButtonItem) {
@@ -53,7 +55,7 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 
 	// MARK: TableViewDelegate
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if self.searchController.active && self.searchController.searchBar.text != "" {
+		if let controller = self.searchController where controller.active && controller.searchBar.text != "" {
 			return self.filteredStudents.count
 		}
 		return self.appDelegate.students.count
@@ -62,12 +64,13 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("studentCell") as! StudentTableViewCell
 		var student: StudentLocation
-		if self.searchController.active && self.searchController.searchBar.text != "" {
+		if let controller = self.searchController where controller.active && controller.searchBar.text != "" {
 			student = self.filteredStudents[indexPath.row]
 		} else {
 			student = self.appDelegate.students[indexPath.row]
 		}
 		cell.label.text = student.firstName + " " + student.lastName
+		cell.urlLabel.text = student.mediaUrl
 		return cell
 	}
 
@@ -87,7 +90,7 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 	}
 
 	func updateSearchResultsForSearchController(searchController: UISearchController) {
-		self.filterStudents(self.searchController.searchBar.text!)
+		self.filterStudents(self.searchController!.searchBar.text!)
 	}
 
 }

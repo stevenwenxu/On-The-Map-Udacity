@@ -11,4 +11,5 @@ import UIKit
 class StudentTableViewCell: UITableViewCell {
 	@IBOutlet weak var mapImage: UIImageView!
 	@IBOutlet weak var label: UILabel!
+	@IBOutlet weak var urlLabel: UILabel!
 }
