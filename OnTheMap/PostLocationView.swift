@@ -110,39 +110,7 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 	func submitLocation() {
 		self.appDelegate.mediaUrl = self.mediaURL
 		self.appDelegate.mapString = self.mapString
-
-		var url = ""
-		var method = ""
-		if let objectId = self.appDelegate.objectId where objectId != "" {
-			url = APIConstants.apiURL + "/\(objectId)"
-			method = "PUT"
-		} else {
-			url = APIConstants.apiURL
-			method = "POST"
-		}
-		let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-		request.HTTPMethod = method
-		request.addValue(APIConstants.appID, forHTTPHeaderField: "X-Parse-Application-Id")
-		request.addValue(APIConstants.APIKEY, forHTTPHeaderField: "X-Parse-REST-API-Key")
-		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-		request.HTTPBody = "{\"uniqueKey\": \"\(self.appDelegate.uniqueKey!)\", \"firstName\": \"\(self.appDelegate.firstName!)\", \"lastName\": \"\(self.appDelegate.lastName!)\",\"mapString\": \"\(self.appDelegate.mapString!)\", \"mediaURL\": \"\(self.appDelegate.mediaUrl!)\",\"latitude\": \(self.appDelegate.latitude!), \"longitude\": \(self.appDelegate.longitude!)}".dataUsingEncoding(NSUTF8StringEncoding)
-		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
-			if let error = error {
-				print(error.localizedDescription)
-			}
-			var obj: AnyObject
-			do {
-				obj = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-			} catch {
-				print("Something happened here")
-				return
-			}
-			print(obj as? NSDictionary)
-			if let objectId = obj["objectId"] as? String {
-				self.appDelegate.objectId = objectId
-			}
-
+		APIStuff.postLocation {
 			dispatch_async(dispatch_get_main_queue()) {
 				let alert = UIAlertController(title: "Success", message: "You've posted your location", preferredStyle: .Alert)
 				let action = UIAlertAction(title: "Okay", style: .Default) { action in
@@ -152,7 +120,6 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 				self.presentViewController(alert, animated: true, completion: nil)
 			}
 		}
-		task.resume()
 	}
 
 	// MARK: - UITextFieldDelegate

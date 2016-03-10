@@ -39,8 +39,14 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 	}
 
 	func tableViewRefreshed(refreshControl: UIRefreshControl) {
+		self.appDelegate.students.removeAll()
 		self.tableView.reloadData()
-		refreshControl.endRefreshing()
+		APIStuff.getStudents {
+			dispatch_async(dispatch_get_main_queue()) {
+				self.tableView.reloadData()
+				refreshControl.endRefreshing()
+			}
+		}
 	}
 
 	@IBAction func uploadPressed(sender: UIBarButtonItem) {
@@ -89,8 +95,14 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 
 	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		if editingStyle == .Delete {
-			self.appDelegate.students.removeAtIndex(indexPath.row)
-			tableView.reloadData()
+			if let objectId = self.appDelegate.students[indexPath.row].objectId {
+				self.appDelegate.students.removeAtIndex(indexPath.row)
+				APIStuff.deleteEntry(objectId) {
+					dispatch_async(dispatch_get_main_queue()) {
+						tableView.reloadData()
+					}
+				}
+			}
 		}
 	}
 
