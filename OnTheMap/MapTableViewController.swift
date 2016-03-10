@@ -28,7 +28,11 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 
 		self.searchController = UISearchController(searchResultsController: nil)
 		self.searchController!.searchResultsUpdater = self
-		self.searchController!.dimsBackgroundDuringPresentation = true
+		if #available(iOS 9.1, *) {
+		    self.searchController!.obscuresBackgroundDuringPresentation = false
+		} else {
+			self.searchController!.dimsBackgroundDuringPresentation = false
+		}
 		self.searchController!.definesPresentationContext = true
 		self.tableView.tableHeaderView = self.searchController!.searchBar
 	}
@@ -87,7 +91,12 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 	}
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let student = self.appDelegate.students[indexPath.row]
+		var student: StudentLocation
+		if let controller = self.searchController where controller.active && controller.searchBar.text != "" {
+			student = self.filteredStudents[indexPath.row]
+		} else {
+			student = self.appDelegate.students[indexPath.row]
+		}
 		if let url = NSURL(string: student.mediaUrl) {
 			UIApplication.sharedApplication().openURL(url)
 		}
@@ -96,6 +105,9 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		if editingStyle == .Delete {
 			if let objectId = self.appDelegate.students[indexPath.row].objectId {
+				if objectId == self.appDelegate.objectId {
+					self.appDelegate.objectId = nil
+				}
 				self.appDelegate.students.removeAtIndex(indexPath.row)
 				APIStuff.deleteEntry(objectId) {
 					dispatch_async(dispatch_get_main_queue()) {
@@ -104,6 +116,10 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 				}
 			}
 		}
+	}
+
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		self.searchController?.searchBar.resignFirstResponder()
 	}
 
 	// MARK: Search

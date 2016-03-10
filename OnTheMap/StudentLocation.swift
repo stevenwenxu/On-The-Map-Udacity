@@ -62,7 +62,7 @@ class APIStuff {
 		task.resume()
 	}
 
-	class func postLocation(callback: (() -> ())?) {
+	class func postLocation(callback: ((success: Bool, message: String?) -> ())?) {
 		var url = ""
 		var method = ""
 		if let objectId = self.appDelegate.objectId where objectId != "" {
@@ -94,8 +94,10 @@ class APIStuff {
 			print(obj as? NSDictionary)
 			if let objectId = obj["objectId"] as? String {
 				self.appDelegate.objectId = objectId
+			} else if let error = obj["error"] as? String {
+				callback?(success: false, message: error)
 			}
-			callback?()
+			callback?(success: true, message: nil)
 		}
 		task.resume()
 	}

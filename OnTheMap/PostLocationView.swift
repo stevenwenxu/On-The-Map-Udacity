@@ -110,13 +110,19 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 	func submitLocation() {
 		self.appDelegate.mediaUrl = self.mediaURL
 		self.appDelegate.mapString = self.mapString
-		APIStuff.postLocation {
-			dispatch_async(dispatch_get_main_queue()) {
-				let alert = UIAlertController(title: "Success", message: "You've posted your location", preferredStyle: .Alert)
-				let action = UIAlertAction(title: "Okay", style: .Default) { action in
-					self.dismissViewControllerAnimated(true, completion: nil)
+		APIStuff.postLocation { success, message in
+			let title = success ? "Success" : "Error"
+			let msg = message ?? "You've posted your location"
+			let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
+			let action = UIAlertAction(title: "Okay", style: .Default) { action in
+				if success {
+					dispatch_async(dispatch_get_main_queue()) {
+						self.dismissViewControllerAnimated(true, completion: nil)
+					}
 				}
-				alert.addAction(action)
+			}
+			alert.addAction(action)
+			dispatch_async(dispatch_get_main_queue()) {
 				self.presentViewController(alert, animated: true, completion: nil)
 			}
 		}
