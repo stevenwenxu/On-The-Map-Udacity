@@ -87,6 +87,13 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 		}
 	}
 
+	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+		if editingStyle == .Delete {
+			self.appDelegate.students.removeAtIndex(indexPath.row)
+			tableView.reloadData()
+		}
+	}
+
 	// MARK: Search
 	func filterStudents(searchText: String, scope: String = "All") {
 		self.filteredStudents = self.appDelegate.students.filter { student in
