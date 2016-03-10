@@ -13,6 +13,7 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 	var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
 	@IBOutlet weak var tableView: UITableView!
+	var refreshControl = UIRefreshControl()
 	var searchController: UISearchController?
 	var filteredStudents: [StudentLocation] = []
 
@@ -20,8 +21,11 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 		super.viewDidLoad()
 		self.tableView.delegate = self
 		self.tableView.dataSource = self
-		self.tableView.estimatedRowHeight = 79
+		self.tableView.estimatedRowHeight = self.tableView.rowHeight
 		self.tableView.rowHeight = UITableViewAutomaticDimension
+		self.refreshControl.addTarget(self, action: "tableViewRefreshed:", forControlEvents: .ValueChanged)
+		self.tableView.addSubview(self.refreshControl)
+
 		self.searchController = UISearchController(searchResultsController: nil)
 		self.searchController!.searchResultsUpdater = self
 		self.searchController!.dimsBackgroundDuringPresentation = true
@@ -33,8 +37,10 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 		self.appDelegate.sessionId = nil
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
-	@IBAction func reloadPressed(sender: UIBarButtonItem) {
+
+	func tableViewRefreshed(refreshControl: UIRefreshControl) {
 		self.tableView.reloadData()
+		refreshControl.endRefreshing()
 	}
 
 	@IBAction func uploadPressed(sender: UIBarButtonItem) {

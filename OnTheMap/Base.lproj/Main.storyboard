@@ -181,18 +181,11 @@
                                 <action selector="logOutPressed:" destination="CQl-Lw-0M1" id="zx4-CM-G5J"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="aGm-1N-th7">
-                                <connections>
-                                    <action selector="reloadPressed:" destination="CQl-Lw-0M1" id="aVi-Wi-C35"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="Pin" id="2CI-H7-Sl7">
-                                <connections>
-                                    <action selector="uploadPressed:" destination="CQl-Lw-0M1" id="6Dj-my-m35"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="Pin" id="2CI-H7-Sl7">
+                            <connections>
+                                <action selector="uploadPressed:" destination="CQl-Lw-0M1" id="6Dj-my-m35"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
