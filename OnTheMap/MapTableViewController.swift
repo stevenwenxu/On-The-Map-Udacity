@@ -66,7 +66,14 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 		} else {
 			self.performSegueWithIdentifier("postLocation", sender: nil)
 		}
+	}
 
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let destVC = segue.destinationViewController as? SingleStudentMapViewController {
+			if let index = sender as? NSIndexPath {
+				destVC.student = self.appDelegate.students[index.row]
+			}
+		}
 	}
 
 	// MARK: TableViewDelegate
@@ -116,6 +123,10 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 				}
 			}
 		}
+	}
+
+	func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+		self.performSegueWithIdentifier("viewStudentOnMap", sender: indexPath)
 	}
 
 	func scrollViewDidScroll(scrollView: UIScrollView) {

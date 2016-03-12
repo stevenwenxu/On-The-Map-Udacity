@@ -118,11 +118,11 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studentCell" rowHeight="67" id="SZd-8U-eUL" customClass="StudentTableViewCell" customModule="OnTheMap" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studentCell" rowHeight="67" id="SZd-8U-eUL" customClass="StudentTableViewCell" customModule="OnTheMap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="SZd-8U-eUL" id="CeX-HQ-tEX">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="273" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" verticalHuggingPriority="251" image="Pin" translatesAutoresizingMaskIntoConstraints="NO" id="CPO-47-6rG">
@@ -133,13 +133,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HP5-b8-Jpk">
-                                                    <rect key="frame" x="48" y="8" width="264" height="21"/>
+                                                    <rect key="frame" x="48" y="8" width="217" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1p-FF-2kp">
-                                                    <rect key="frame" x="48" y="37" width="264" height="21"/>
+                                                    <rect key="frame" x="48" y="37" width="217" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -192,11 +192,46 @@
                     <connections>
                         <outlet property="tableView" destination="QxG-Vc-xjJ" id="0k6-Nq-6w4"/>
                         <segue destination="6lg-2Y-fXy" kind="modal" identifier="postLocation" id="Izi-fe-78i"/>
+                        <segue destination="pWG-ko-SJa" kind="push" identifier="viewStudentOnMap" id="J2V-82-gNO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tf-ZG-Fhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1790" y="873"/>
+        </scene>
+        <!--Single Student Map View Controller-->
+        <scene sceneID="49C-i5-aHJ">
+            <objects>
+                <viewController id="pWG-ko-SJa" customClass="SingleStudentMapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IbV-ea-kYv"/>
+                        <viewControllerLayoutGuide type="bottom" id="RqM-iQ-GD1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dfa-T2-DNt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zC7-hH-ftO">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zC7-hH-ftO" firstAttribute="top" secondItem="IbV-ea-kYv" secondAttribute="bottom" id="NpJ-V2-gYP"/>
+                            <constraint firstItem="zC7-hH-ftO" firstAttribute="leading" secondItem="Dfa-T2-DNt" secondAttribute="leading" id="OaW-Zc-kwe"/>
+                            <constraint firstItem="zC7-hH-ftO" firstAttribute="bottom" secondItem="RqM-iQ-GD1" secondAttribute="top" id="hNK-hH-Hbh"/>
+                            <constraint firstAttribute="trailing" secondItem="zC7-hH-ftO" secondAttribute="trailing" id="lW3-tM-OEn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UBB-nJ-ngI"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="zC7-hH-ftO" id="dOS-WA-fGz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cuw-e6-Ryb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2230" y="1331"/>
         </scene>
         <!--Post Location View-->
         <scene sceneID="fXX-mE-Yt0">
