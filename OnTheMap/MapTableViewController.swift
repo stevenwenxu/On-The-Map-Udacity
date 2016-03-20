@@ -39,6 +39,7 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 
 	@IBAction func logOutPressed(sender: UIBarButtonItem) {
 		self.appDelegate.sessionId = nil
+		self.appDelegate.fbLoginManager.logOut()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 

@@ -64,12 +64,18 @@
                                     <action selector="signUpDidPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="FWd-Rh-1Ob"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEs-AE-S6X" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="16" y="508" width="288" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="OEs-AE-S6X" firstAttribute="leading" secondItem="946-YP-pUE" secondAttribute="leading" id="5td-XU-Kyc"/>
                             <constraint firstItem="WUF-5i-LtN" firstAttribute="top" secondItem="snE-l1-upj" secondAttribute="bottom" constant="8" symbolic="YES" id="942-Qf-Xwt"/>
                             <constraint firstItem="yoJ-95-BEq" firstAttribute="leading" secondItem="946-YP-pUE" secondAttribute="leading" id="Een-hn-O4S"/>
                             <constraint firstItem="WUF-5i-LtN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JZ0-oQ-43f"/>
                             <constraint firstItem="m7x-k1-XIp" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="PU2-24-u0K"/>
+                            <constraint firstItem="OEs-AE-S6X" firstAttribute="height" secondItem="946-YP-pUE" secondAttribute="height" id="Q93-r4-TkH"/>
                             <constraint firstItem="hJc-UQ-Dra" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="180" id="R9d-en-h0t"/>
                             <constraint firstAttribute="trailingMargin" secondItem="snE-l1-upj" secondAttribute="trailing" id="SKW-Kp-VEI"/>
                             <constraint firstItem="snE-l1-upj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Sic-ci-Zcj"/>
@@ -77,12 +83,14 @@
                             <constraint firstItem="m7x-k1-XIp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TbR-UH-0Ix"/>
                             <constraint firstItem="yoJ-95-BEq" firstAttribute="trailing" secondItem="946-YP-pUE" secondAttribute="trailing" id="Xfb-XY-t0x"/>
                             <constraint firstItem="m7x-k1-XIp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="YA2-0G-PmQ"/>
+                            <constraint firstAttribute="bottom" secondItem="OEs-AE-S6X" secondAttribute="bottom" constant="20" symbolic="YES" id="ZB5-KI-eyR"/>
                             <constraint firstItem="WUF-5i-LtN" firstAttribute="height" secondItem="snE-l1-upj" secondAttribute="height" id="ciZ-Om-yhQ"/>
                             <constraint firstAttribute="trailing" secondItem="m7x-k1-XIp" secondAttribute="trailing" id="csv-Rc-7kJ"/>
                             <constraint firstItem="snE-l1-upj" firstAttribute="top" secondItem="hJc-UQ-Dra" secondAttribute="bottom" constant="20" id="gHl-9a-FoI"/>
                             <constraint firstItem="946-YP-pUE" firstAttribute="width" secondItem="WUF-5i-LtN" secondAttribute="width" id="gMu-zl-fjf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WUF-5i-LtN" secondAttribute="trailing" id="hc6-tV-4Bx"/>
                             <constraint firstItem="yoJ-95-BEq" firstAttribute="top" secondItem="946-YP-pUE" secondAttribute="bottom" constant="8" symbolic="YES" id="qlb-QH-Yab"/>
+                            <constraint firstItem="OEs-AE-S6X" firstAttribute="trailing" secondItem="946-YP-pUE" secondAttribute="trailing" id="qo2-ab-WVM"/>
                             <constraint firstItem="946-YP-pUE" firstAttribute="height" secondItem="snE-l1-upj" secondAttribute="height" id="xWE-28-8sW"/>
                             <constraint firstItem="946-YP-pUE" firstAttribute="centerX" secondItem="m7x-k1-XIp" secondAttribute="centerX" id="xuV-vS-08H"/>
                             <constraint firstItem="hJc-UQ-Dra" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yLv-wo-L8U"/>
@@ -94,6 +102,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="snE-l1-upj" id="01L-mW-pwW"/>
+                        <outlet property="facebookLoginButton" destination="OEs-AE-S6X" id="Hz5-aU-ZMg"/>
                         <outlet property="passwordTextField" destination="WUF-5i-LtN" id="tmt-21-pfO"/>
                         <segue destination="Bbd-87-bCS" kind="modal" identifier="loggedIn" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="kQc-sL-T3T"/>
                     </connections>

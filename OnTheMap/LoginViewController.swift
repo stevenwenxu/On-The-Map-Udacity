@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
 	@IBOutlet weak var emailTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
+	@IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
 
 	var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
@@ -21,6 +23,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		self.emailTextField.delegate = self
 		self.passwordTextField.delegate = self
 		self.view.addGestureRecognizer(tapGesture)
+		self.facebookLoginButton.delegate = self
+		self.facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -43,16 +47,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	@IBAction func loginDidTap() {
-		self.logIn()
+		self.logIn(nil)
 		self.view.endEditing(true)
 	}
 
-	func logIn() {
+	func logIn(facebookToken: String?) {
 		let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
 		request.HTTPMethod = "POST"
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.HTTPBody = "{\"udacity\": {\"username\": \"\(self.emailTextField.text!)\", \"password\": \"\(self.passwordTextField.text!)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+		if let token = facebookToken {
+			request.HTTPBody = "{\"facebook_mobile\": {\"access_token\": \"\(token)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+		} else {
+			request.HTTPBody = "{\"udacity\": {\"username\": \"\(self.emailTextField.text!)\", \"password\": \"\(self.passwordTextField.text!)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+		}
 
 		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
 			if let error = error {
@@ -132,9 +140,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 			self.passwordTextField.becomeFirstResponder()
 		} else if textField == self.passwordTextField {
 			textField.resignFirstResponder()
-			self.logIn()
+			self.logIn(nil)
 		}
 		return false
+	}
+
+	// - MARK: FBSDKLoginButtonDelegate
+	func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+		if let error = error {
+			print(error.localizedDescription)
+		}
+		if let result = result {
+			if result.isCancelled {
+				print("Facebook login is cancelled")
+			} else if let token = result.token {
+				self.logIn(token.tokenString)
+			}
+		}
+	}
+
+	func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+		print("Logged out of facebook")
+	}
+
+	func loginButtonWillLogin(loginButton: FBSDKLoginButton!) -> Bool {
+		return true
 	}
 }
 

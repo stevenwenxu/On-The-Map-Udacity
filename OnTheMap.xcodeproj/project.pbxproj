@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B02122361C9EDBB10050C858 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02122351C9EDBB10050C858 /* FBSDKCoreKit.framework */; };
+		B02122391C9EDBC50050C858 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02122371C9EDBC50050C858 /* FBSDKLoginKit.framework */; };
+		B021223A1C9EDBC50050C858 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02122381C9EDBC50050C858 /* FBSDKShareKit.framework */; };
 		B04D1EE31C9499B4000BA772 /* SingleStudentMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04D1EE21C9499B4000BA772 /* SingleStudentMapViewController.swift */; };
 		B0C1846F1C8C8ED70039643A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C1846E1C8C8ED70039643A /* AppDelegate.swift */; };
 		B0C184711C8C8ED70039643A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C184701C8C8ED70039643A /* LoginViewController.swift */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B02122351C9EDBB10050C858 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		B02122371C9EDBC50050C858 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		B02122381C9EDBC50050C858 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		B04D1EE21C9499B4000BA772 /* SingleStudentMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleStudentMapViewController.swift; sourceTree = "<group>"; };
 		B0C1846B1C8C8ED70039643A /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C1846E1C8C8ED70039643A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,12 +47,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02122391C9EDBC50050C858 /* FBSDKLoginKit.framework in Frameworks */,
+				B02122361C9EDBB10050C858 /* FBSDKCoreKit.framework in Frameworks */,
+				B021223A1C9EDBC50050C858 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B02122341C9EDB730050C858 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B02122371C9EDBC50050C858 /* FBSDKLoginKit.framework */,
+				B02122381C9EDBC50050C858 /* FBSDKShareKit.framework */,
+				B02122351C9EDBB10050C858 /* FBSDKCoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B0C184621C8C8ED70039643A = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +102,7 @@
 		B0C184801C8C8EF70039643A /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				B02122341C9EDB730050C858 /* Frameworks */,
 				B0C184751C8C8ED70039643A /* Assets.xcassets */,
 				B0C184771C8C8ED70039643A /* LaunchScreen.storyboard */,
 				B0C1847A1C8C8ED70039643A /* Info.plist */,
@@ -279,6 +299,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OnTheMap",
+				);
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -291,6 +315,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OnTheMap",
+				);
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

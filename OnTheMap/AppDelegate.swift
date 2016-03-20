@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -87,6 +89,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	var students: [StudentLocation] = []
+
+	let fbLoginManager = FBSDKLoginManager()
+
+	func applicationDidBecomeActive(application: UIApplication) {
+		FBSDKAppEvents.activateApp()
+	}
+
+	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+		FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+		let _ = FBSDKLoginButton()
+		return true
+	}
+
+	func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+		return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+	}
 
 }
 

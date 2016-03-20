@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FBSDKLoginKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
 
@@ -26,6 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
 	@IBAction func logOutPressed(sender: UIBarButtonItem) {
 		self.appDelegate.sessionId = nil
+		self.appDelegate.fbLoginManager.logOut()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 

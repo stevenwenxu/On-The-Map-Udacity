@@ -34,5 +34,54 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fbauth2</string>
+				<string>fb365362206864879onthemap</string>
+			</array>
+		</dict>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>facebook.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>fbcdn.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key>FacebookAppID</key>
+	<string>365362206864879</string>
+	<key>FacebookDisplayName</key>
+	<string>On The Map</string>
+	<key>FacebookUrlSchemeSuffix</key>
+	<string>onthemap</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 </dict>
 </plist>
