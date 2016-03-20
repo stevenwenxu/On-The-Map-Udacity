@@ -39,7 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
 	// - MARK: Events
 
 	@IBAction func signUpDidPress() {
-		UIApplication.sharedApplication().openURL(NSURL(string: "https://www.udacity.com/account/auth#!/signup")!)
+		UIApplication.sharedApplication().openURL(NSURL(string: APIConstants.signUpUdacity)!)
 	}
 
 
@@ -53,7 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
 	}
 
 	func logIn(facebookToken: String?) {
-		let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+		let request = NSMutableURLRequest(URL: NSURL(string: APIConstants.API_SESSION)!)
 		request.HTTPMethod = "POST"
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -105,7 +105,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
 	}
 
 	func storeUserInfo() {
-		let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/me")!)
+		let request = NSMutableURLRequest(URL: NSURL(string: APIConstants.UDACITY_ME)!)
 		request.HTTPMethod = "GET"
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")

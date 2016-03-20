@@ -10,26 +10,29 @@ import UIKit
 
 struct StudentLocation {
 	var objectId: String?
-	let uniqueKey: String
-	let firstName: String
-	let lastName: String
+	var uniqueKey: String
+	var firstName: String
+	var lastName: String
 	var mapString: String
 	var mediaUrl: String
 	var latitude: Double
 	var longitude: Double
 }
 
+struct APIConstants {
+	static let API_URL = "https://api.parse.com/1/classes/StudentLocation"
+	static let appID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+	static let APIKEY = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+	static let signUpUdacity = "https://www.udacity.com/account/auth#!/signup"
+	static let API_SESSION = "https://www.udacity.com/api/session"
+	static let UDACITY_ME = "https://www.udacity.com/api/users/me"
+}
+
 class APIStuff {
 	static let appDelegate = (UIApplication.sharedApplication().delegate) as! AppDelegate
 
-	struct APIConstants {
-		static let apiURL = "https://api.parse.com/1/classes/StudentLocation"
-		static let appID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
-		static let APIKEY = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
-	}
-
 	class func getStudents(callback: (() -> ())?) {
-		let request = NSMutableURLRequest(URL: NSURL(string: APIConstants.apiURL + "?limit=100")!)
+		let request = NSMutableURLRequest(URL: NSURL(string: APIConstants.API_URL + "?limit=100")!)
 		request.addValue(APIConstants.appID, forHTTPHeaderField: "X-Parse-Application-Id")
 		request.addValue(APIConstants.APIKEY, forHTTPHeaderField: "X-Parse-REST-API-Key")
 		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
@@ -63,13 +66,13 @@ class APIStuff {
 	}
 
 	class func postLocation(callback: ((success: Bool, message: String?) -> ())?) {
-		var url = ""
-		var method = ""
-		if let objectId = self.appDelegate.objectId where objectId != "" {
-			url = APIConstants.apiURL + "/\(objectId)"
+		var url: String
+		var method: String
+		if let objectId = self.appDelegate.thisStudent.objectId where objectId != "" {
+			url = APIConstants.API_URL + "/\(objectId)"
 			method = "PUT"
 		} else {
-			url = APIConstants.apiURL
+			url = APIConstants.API_URL
 			method = "POST"
 		}
 		let request = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -103,7 +106,7 @@ class APIStuff {
 	}
 
 	class func deleteEntry(objectId: String, callback: (() -> ())?) {
-		let url = APIConstants.apiURL + "/\(objectId)"
+		let url = APIConstants.API_URL + "/\(objectId)"
 		let request = NSMutableURLRequest(URL: NSURL(string: url)!)
 		request.HTTPMethod = "DELETE"
 		request.addValue(APIConstants.appID, forHTTPHeaderField: "X-Parse-Application-Id")
