@@ -80,6 +80,7 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 			self.navBar.topItem?.rightBarButtonItems?.forEach { $0.tintColor = UIColor.whiteColor() }
 
 			self.textLabel.text = "Enter a Link to Share Here"
+			self.textField.autocorrectionType = .No
 			self.button.setTitle("Submit", forState: .Normal)
 			self.textField.text = ""
 			self.view.layoutIfNeeded()

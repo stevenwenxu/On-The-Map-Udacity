@@ -23,6 +23,7 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 		self.tableView.dataSource = self
 		self.tableView.estimatedRowHeight = self.tableView.rowHeight
 		self.tableView.rowHeight = UITableViewAutomaticDimension
+		self.refreshControl.backgroundColor = UIColor.lightTextColor()
 		self.refreshControl.addTarget(self, action: "tableViewRefreshed:", forControlEvents: .ValueChanged)
 		self.tableView.addSubview(self.refreshControl)
 
