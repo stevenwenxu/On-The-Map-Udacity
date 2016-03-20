@@ -78,7 +78,7 @@ class APIStuff {
 		request.addValue(APIConstants.APIKEY, forHTTPHeaderField: "X-Parse-REST-API-Key")
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-		request.HTTPBody = "{\"uniqueKey\": \"\(self.appDelegate.uniqueKey!)\", \"firstName\": \"\(self.appDelegate.firstName!)\", \"lastName\": \"\(self.appDelegate.lastName!)\",\"mapString\": \"\(self.appDelegate.mapString!)\", \"mediaURL\": \"\(self.appDelegate.mediaUrl!)\",\"latitude\": \(self.appDelegate.latitude!), \"longitude\": \(self.appDelegate.longitude!)}".dataUsingEncoding(NSUTF8StringEncoding)
+		request.HTTPBody = "{\"uniqueKey\": \"\(self.appDelegate.thisStudent.uniqueKey)\", \"firstName\": \"\(self.appDelegate.thisStudent.firstName)\", \"lastName\": \"\(self.appDelegate.thisStudent.lastName)\",\"mapString\": \"\(self.appDelegate.thisStudent.mapString)\", \"mediaURL\": \"\(self.appDelegate.thisStudent.mediaUrl)\",\"latitude\": \(self.appDelegate.thisStudent.latitude), \"longitude\": \(self.appDelegate.thisStudent.longitude)}".dataUsingEncoding(NSUTF8StringEncoding)
 
 		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
 			if let error = error {
@@ -93,7 +93,7 @@ class APIStuff {
 			}
 			print(obj as? NSDictionary)
 			if let objectId = obj["objectId"] as? String {
-				self.appDelegate.objectId = objectId
+				self.appDelegate.thisStudent.objectId = objectId
 			} else if let error = obj["error"] as? String {
 				callback?(success: false, message: error)
 			}

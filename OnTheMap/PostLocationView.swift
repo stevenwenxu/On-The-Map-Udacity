@@ -95,8 +95,8 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 					print(error.localizedDescription)
 				}
 				if let placemark = placemarks?.first {
-					self.appDelegate.latitude = placemark.location?.coordinate.latitude
-					self.appDelegate.longitude = placemark.location?.coordinate.longitude
+					self.appDelegate.thisStudent.latitude = placemark.location!.coordinate.latitude
+					self.appDelegate.thisStudent.longitude = placemark.location!.coordinate.longitude
 					self.setupSecondScreen()
 					self.locationMapView.showAnnotations([MKPlacemark(placemark: placemark)], animated: true)
 				}
@@ -108,8 +108,8 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 	}
 
 	func submitLocation() {
-		self.appDelegate.mediaUrl = self.mediaURL
-		self.appDelegate.mapString = self.mapString
+		self.appDelegate.thisStudent.mediaUrl = self.mediaURL!
+		self.appDelegate.thisStudent.mapString = self.mapString!
 		APIStuff.postLocation { success, message in
 			let title = success ? "Success" : "Error"
 			let msg = message ?? "You've posted your location"
@@ -117,6 +117,7 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 			let action = UIAlertAction(title: "Okay", style: .Default) { action in
 				if success {
 					dispatch_async(dispatch_get_main_queue()) {
+						self.appDelegate.uniqueKeyThatPostedLocation = self.appDelegate.thisStudent.uniqueKey
 						self.dismissViewControllerAnimated(true, completion: nil)
 					}
 				}

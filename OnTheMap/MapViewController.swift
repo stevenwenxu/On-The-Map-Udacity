@@ -27,6 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
 	@IBAction func logOutPressed(sender: UIBarButtonItem) {
 		self.appDelegate.sessionId = nil
+		self.appDelegate.uniqueKeyThatPostedLocation = nil
 		self.appDelegate.fbLoginManager.logOut()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
@@ -39,7 +40,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
 	@IBAction func uploadPressed(sender: UIBarButtonItem) {
 
-		if let objectId = self.appDelegate.objectId where objectId != "" {
+		if self.appDelegate.uniqueKeyThatPostedLocation != nil {
 			let alert = UIAlertController(title: nil, message: "You have already posted a location. Would you like to overwrite your current location?", preferredStyle: .Alert)
 			let yesAction = UIAlertAction(title: "Overwrite", style: .Default) { _ in
 				self.performSegueWithIdentifier("postLocation", sender: nil)

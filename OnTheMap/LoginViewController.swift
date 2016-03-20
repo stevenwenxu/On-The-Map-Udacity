@@ -31,6 +31,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
 		super.viewDidAppear(animated)
 		if let id = NSUserDefaults.standardUserDefaults().valueForKey("udacitySessionId") as? String {
 			self.appDelegate.sessionId = id
+			self.storeUserInfo()
 			self.performSegueWithIdentifier("loggedIn", sender: nil)
 		}
 	}
@@ -121,14 +122,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
 				return
 			}
 			if let userDict = obj["user"] as? NSDictionary {
-				self.appDelegate.objectId = ""
-				self.appDelegate.uniqueKey = userDict["key"] as? String
-				self.appDelegate.firstName = userDict["first_name"] as? String
-				self.appDelegate.lastName = userDict["last_name"] as? String
-				self.appDelegate.mapString =  ""
-				self.appDelegate.mediaUrl = ""
-				self.appDelegate.latitude = 0.0
-				self.appDelegate.longitude = 0.0
+				self.appDelegate.thisStudent.objectId = ""
+				self.appDelegate.thisStudent.uniqueKey = userDict["key"] as! String
+				self.appDelegate.thisStudent.firstName = userDict["first_name"] as! String
+				self.appDelegate.thisStudent.lastName = userDict["last_name"] as! String
+				self.appDelegate.thisStudent.mapString =  ""
+				self.appDelegate.thisStudent.mediaUrl = ""
+				self.appDelegate.thisStudent.latitude = 0.0
+				self.appDelegate.thisStudent.longitude = 0.0
 			}
 		}
 		task.resume()

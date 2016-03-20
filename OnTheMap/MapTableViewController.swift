@@ -39,6 +39,7 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 
 	@IBAction func logOutPressed(sender: UIBarButtonItem) {
 		self.appDelegate.sessionId = nil
+		self.appDelegate.uniqueKeyThatPostedLocation = nil
 		self.appDelegate.fbLoginManager.logOut()
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
@@ -55,7 +56,7 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 	}
 
 	@IBAction func uploadPressed(sender: UIBarButtonItem) {
-		if let objectId = self.appDelegate.objectId where objectId != "" {
+		if self.appDelegate.uniqueKeyThatPostedLocation != nil {
 			let alert = UIAlertController(title: nil, message: "You have already posted a location. Would you like to overwrite your current location?", preferredStyle: .Alert)
 			let yesAction = UIAlertAction(title: "Overwrite", style: .Default) { _ in
 				self.performSegueWithIdentifier("postLocation", sender: nil)
@@ -113,8 +114,9 @@ class MapTableViewController: UIViewController, UITableViewDelegate, UITableView
 	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		if editingStyle == .Delete {
 			if let objectId = self.appDelegate.students[indexPath.row].objectId {
-				if objectId == self.appDelegate.objectId {
-					self.appDelegate.objectId = nil
+				if objectId == self.appDelegate.thisStudent.objectId {
+					self.appDelegate.thisStudent.objectId = nil
+					self.appDelegate.uniqueKeyThatPostedLocation = nil
 				}
 				self.appDelegate.students.removeAtIndex(indexPath.row)
 				APIStuff.deleteEntry(objectId) {
