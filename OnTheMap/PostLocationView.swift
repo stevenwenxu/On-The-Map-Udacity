@@ -48,7 +48,7 @@ class PostLocationView: UIViewController, UITextFieldDelegate {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let tapGesture = UITapGestureRecognizer(target: self, action: "viewDidTap")
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
 		self.view.addGestureRecognizer(tapGesture)
 		self.textField.delegate = self
 		self.setupFirstScreen()

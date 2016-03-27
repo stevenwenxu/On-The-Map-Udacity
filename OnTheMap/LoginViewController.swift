@@ -19,7 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
 	// - MARK: View Controller Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let tapGesture = UITapGestureRecognizer(target: self, action: "viewDidTap")
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
 		self.emailTextField.delegate = self
 		self.passwordTextField.delegate = self
 		self.view.addGestureRecognizer(tapGesture)
